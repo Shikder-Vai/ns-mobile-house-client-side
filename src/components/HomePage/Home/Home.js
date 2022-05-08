@@ -1,5 +1,6 @@
 import React from "react";
 import Benner from "../Bennar/Benner";
+import Products from "../Products/Products";
 import Reviews from "../Reviews/Reviews";
 import Welcome from "../Welcome/Welcome";
 
@@ -9,6 +10,7 @@ const Home = () => {
       <Benner></Benner>
       <Welcome></Welcome>
       <Reviews></Reviews>
+      <Products></Products>
     </div>
   );
 };
