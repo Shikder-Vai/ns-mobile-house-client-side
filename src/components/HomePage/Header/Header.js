@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import { Button, Navbar } from "flowbite-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [user] = useAuthState(auth);
@@ -19,25 +19,22 @@ const Header = () => {
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse>
-        <Navbar.Link href="/navbars" active={true}>
-          Home
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">About</Navbar.Link>
-        <Navbar.Link href="/navbars">Services</Navbar.Link>
-        <Navbar.Link href="/navbars">Pricing</Navbar.Link>
-        <Navbar.Link href="/navbars">Contact</Navbar.Link>
+        <Navbar.Link active={true}>Home</Navbar.Link>
+        <NavLink to={"/"}></NavLink>
+        <NavLink to={"/home"}>Home</NavLink>
+        <NavLink to={"/signUp"}></NavLink>
         {user ? (
           <Button className="button-style" onClick={handleLogOut}>
             SIGN OUT
           </Button>
         ) : (
-          <Navbar.Link
+          <NavLink
             as={Link}
             to="/login"
             className={({ isActive }) => (isActive ? "link-active" : "link")}
           >
             LOGIN
-          </Navbar.Link>
+          </NavLink>
         )}
       </Navbar.Collapse>
     </Navbar>

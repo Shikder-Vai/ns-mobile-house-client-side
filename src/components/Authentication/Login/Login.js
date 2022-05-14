@@ -1,12 +1,45 @@
-import { sendPasswordResetEmail } from "firebase/auth";
 import React from "react";
-import { Link } from "react-router-dom";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import auth from "../../../firebase.init";
+import Loading from "../../Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  let from = location.state?.from?.pathname || "/home";
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  let errorMessage;
+
+  if (loading || sending) {
+    return <Loading></Loading>;
+  }
+  if (user) {
+    navigate(from, { replace: true });
+  }
+  if (error) {
+    errorMessage = <p className="text-danger">{error?.message} </p>;
+  }
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    console.log(email, password);
+
+    signInWithEmailAndPassword(email, password);
+  };
+
   const resetPassword = async (event) => {
-    const email = event.name.value;
+    const email = event.target.email.value;
     if (email) {
       await sendPasswordResetEmail(email);
       toast("Sent email");
@@ -20,7 +53,7 @@ const Login = () => {
         <h5 className=" border-cyan-300 font-serif m-3 border-2 rounded-xl text-xl mb-8 font-medium text-gray-900 dark:text-white">
           SignIn to our platform
         </h5>
-        <form>
+        <form onSubmit={handleLogin}>
           <div>
             <label
               htmlFor=""
@@ -62,26 +95,24 @@ const Login = () => {
             Login to your account
           </button>
         </form>
+        {errorMessage}
         <div className=" flex p-5 flex-row justify-between">
-          <div className="">
-            <p
-              onClick={resetPassword}
-              className=" text-sm text-blue-700 hover:underline dark:text-blue-500"
-            >
+          <p className=" text-sm text-blue-700 hover:underline dark:text-blue-500">
+            <button onClick={resetPassword} type="reset">
               Lost Password?
-            </p>
-          </div>
+            </button>
+          </p>
 
           <Link
-            to="/singUp"
+            to="/signUp"
             className=" text-sm text-blue-700 hover:underline dark:text-blue-500"
           >
             New? Please Register
           </Link>
         </div>
         <SocialLogin></SocialLogin>
-        <ToastContainer />
       </div>
+      <ToastContainer />
     </div>
   );
 };
