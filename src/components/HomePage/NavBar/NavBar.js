@@ -1,78 +1,144 @@
-import React, { useState } from "react";
-import { MenuIcon, XIcon } from "@heroicons/react/solid";
-import { Link, NavLink } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../../firebase.init";
 import { signOut } from "firebase/auth";
+import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../../../firebase.init";
+import ActiveLink from "./ActiveLink";
 
 const NavBar = () => {
-  const [open, setOpen] = useState(false);
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
   const [user] = useAuthState(auth);
-  const handleLogOut = () => {
+
+  const handleLogout = () => {
     signOut(auth);
+    toast.success("Logout success");
   };
+
   return (
-    <nav className="bg-indigo-200 flex space-x-96 p-3 justify-center">
-      <div className=" flex items-start">
-        <button className=" font-serif font-bold text-orange-400 text-2xl">
-          NS MOBILE HOUSE
-        </button>
-      </div>
-      <div>
-        <div onClick={() => setOpen(!open)} className="w-8 h-9 md:hidden">
-          {open ? <XIcon></XIcon> : <MenuIcon></MenuIcon>}
-        </div>
-        <div
-          className={`text-2xl md:flex font-serif justify-center w-full bg-indigo-200 absolute md:static duration-500 ease-in ${
-            open ? "top-10" : "top-[-130px]"
-          }`}
-        >
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? " text-teal-500 font-bold mr-5"
-                : "mr-5 text-blue-900 font-semibold"
-            }
-            to={"/"}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? " text-teal-500 font-bold mr-5"
-                : "mr-5 text-blue-900 font-semibold"
-            }
-            to={"/blogs"}
-          >
-            Blogs
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? " text-teal-500 font-bold mr-5"
-                : "mr-5 text-blue-900 font-semibold"
-            }
-            to={"/blogs"}
-          >
-            About
-          </NavLink>
-          {user ? (
-            <button className="button-style" onClick={handleLogOut}>
-              SIGN OUT
-            </button>
-          ) : (
-            <NavLink
-              as={Link}
-              to="/login"
-              className={({ isActive }) => (isActive ? "link-active" : "link")}
+    <div className="sticky top-0">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-[#151515] mb-0">
+        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <ActiveLink
+              className="leading-relaxed font-bold text-lg inline-block mr-4"
+              to="/"
             >
-              LOGIN
-            </NavLink>
-          )}
+              <h1>NS MOBILE HOUSE</h1>
+            </ActiveLink>
+            <button
+              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              type="button"
+              onClick={() => setNavbarOpen(!navbarOpen)}
+            >
+              {!navbarOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+          <div
+            className={
+              "lg:flex flex-grow items-center" +
+              (navbarOpen ? " flex" : " hidden")
+            }
+            id="example-navbar-danger"
+          >
+            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+              <li className="nav-item">
+                <ActiveLink
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  to="/home"
+                >
+                  HOME
+                </ActiveLink>
+              </li>
+              <li className="nav-item">
+                <ActiveLink
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  to="/inventory"
+                >
+                  INVENTORY
+                </ActiveLink>
+              </li>
+              {user ? (
+                <li className="nav-item">
+                  <ActiveLink
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    to="/manageInventory/mangeItems"
+                  >
+                    MANAGE INVENTORY
+                  </ActiveLink>
+                </li>
+              ) : (
+                ""
+              )}
+              <li className="nav-item">
+                <ActiveLink
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  to="/blogs"
+                >
+                  BLOG
+                </ActiveLink>
+              </li>
+              <li className="nav-item">
+                {user ? (
+                  <button
+                    onClick={handleLogout}
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <ActiveLink
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    to="/login"
+                  >
+                    LOGIN
+                  </ActiveLink>
+                )}
+              </li>
+              <li className="nav-item">
+                {user ? (
+                  ""
+                ) : (
+                  <ActiveLink
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    to="/signUp"
+                  >
+                    REGESTER
+                  </ActiveLink>
+                )}
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 
