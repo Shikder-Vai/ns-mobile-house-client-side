@@ -1,7 +1,9 @@
 import { Card } from "flowbite-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Product = ({ product }) => {
+  const navigate = useNavigate();
   const { name, image, price, quantity, description, Suplier } = product;
   return (
     <div>
@@ -10,7 +12,7 @@ const Product = ({ product }) => {
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
           <span className="text-2xl font-bold">Name:</span> {name}
         </h5>
-        <div className="flex justify-evenly">
+        <div className="flex justify-between">
           <h5>
             <span className=" text-xl font-semibold">Price:</span>
             {price}
@@ -30,7 +32,10 @@ const Product = ({ product }) => {
           <span className=" text-lg font-medium">Suplier:</span>
           {Suplier}
         </h3>
-        <button className="bg-[#FF5400] hover:bg-[#FF4400] text-white w-[100%]  rounded-md py-2">
+        <button
+          onClick={() => navigate(`/inventory/${product._id}`)}
+          className="bg-[#FF5400] hover:bg-[#FF4400] text-white w-[100%]  rounded-md py-2"
+        >
           MANAGE
         </button>
       </Card>

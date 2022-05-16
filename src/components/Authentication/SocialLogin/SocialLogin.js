@@ -21,6 +21,7 @@ const SocialLogin = () => {
   if (user) {
     navigate("/");
   }
+  console.log(user);
   return (
     <div>
       <div className="d-flex align-items-center">

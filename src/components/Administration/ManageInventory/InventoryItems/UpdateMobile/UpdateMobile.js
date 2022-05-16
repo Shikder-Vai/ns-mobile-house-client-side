@@ -74,7 +74,7 @@ const UpdateMobile = () => {
           name="suppliername"
           type="text"
           readOnly
-          value={mobile?.suplier}
+          value={mobile?.Suplier}
           required
         />
 

@@ -63,12 +63,12 @@ const Login = () => {
   };
   return (
     <div className=" py-5 bg-slate-400 h-screen">
-      <div className=" border-2 py-6 md:mx-96 rounded-xl  bg-slate-200">
-        <h5 className=" border-cyan-300 font-serif m-3 border-2 rounded-xl text-xl mb-8 font-medium text-gray-900 dark:text-white">
+      <div className=" border-2 items-center flex flex-col py-6 md:mx-96 rounded-xl  bg-slate-200">
+        <h5 className=" border-cyan-300 font-serif m-3 text-center border-2 rounded-xl text-xl mb-8 font-medium text-gray-900 dark:text-white">
           SignIn to our platform
         </h5>
         <form onSubmit={handleLogin}>
-          <div>
+          <div className="  ">
             <label
               htmlFor=""
               className=" mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -88,7 +88,7 @@ const Login = () => {
           <div className="mb-4">
             <label
               htmlFor=""
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="block mt-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Your Password
             </label>
@@ -124,7 +124,9 @@ const Login = () => {
             New? Please Register
           </Link>
         </div>
-        <SocialLogin></SocialLogin>
+        <div>
+          <SocialLogin></SocialLogin>
+        </div>
         {/* <ToastContainer /> */}
       </div>
     </div>
