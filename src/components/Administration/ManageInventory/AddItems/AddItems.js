@@ -5,6 +5,7 @@ import auth from "../../../../firebase.init";
 
 const AddItems = () => {
   const [user] = useAuthState(auth);
+  console.log(user);
 
   const handlePostInventory = (e) => {
     e.preventDefault();
@@ -26,8 +27,9 @@ const AddItems = () => {
       image,
       userEmail,
     };
+    console.log(userEmail);
 
-    fetch("https://auto-shoroom.herokuapp.com/inventory", {
+    fetch("https://ns-mobile-house.herokuapp.com/inventory", {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

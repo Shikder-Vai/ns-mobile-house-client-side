@@ -23,7 +23,7 @@ const NavBar = () => {
               className="leading-relaxed font-bold text-lg inline-block mr-4"
               to="/"
             >
-              <h1>NS MOBILE HOUSE</h1>
+              <h1 className=" text-orange-400">NS MOBILE HOUSE</h1>
             </ActiveLink>
             <button
               className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"

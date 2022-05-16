@@ -12,7 +12,7 @@ const MyInventory = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `https://auto-shoroom.herokuapp.com/myinventory?email=${user.email}`;
+    const url = `https://ns-mobile-house.herokuapp.com/myinventory?email=${user.email}`;
     fetch(url, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -39,7 +39,7 @@ const MyInventory = () => {
   return (
     <div className="grid md:grid-cols-2 items-center justify-center">
       {mobiles?.length ? (
-        mobiles.map((mobile) => <Mobile key={mobile._id} car={mobile} />)
+        mobiles?.map((mobile) => <Mobile key={mobile?._id} mobile={mobile} />)
       ) : (
         <p className="text-red-600 text-4xl text-center my-10 w-full">
           You have to add an Inventory!

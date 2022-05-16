@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Helmet from "react-helmet";
 import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 
 const ManageMobile = () => {
@@ -10,7 +10,7 @@ const ManageMobile = () => {
   const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
-    fetch(`https://auto-shoroom.herokuapp.com/cars/${inventoryId}`)
+    fetch(`https://ns-mobile-house.herokuapp.com/mobiles/${inventoryId}`)
       .then((res) => res.json())
       .then((data) => setMobile(data));
   }, [inventoryId, refresh]);
@@ -36,7 +36,7 @@ const ManageMobile = () => {
       image,
     };
 
-    fetch(`https://auto-shoroom.herokuapp.com/cars/${mobile._id}`, {
+    fetch(`https://ns-mobile-house.herokuapp.com/mobiles/${mobile._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -71,7 +71,7 @@ const ManageMobile = () => {
         image,
       };
 
-      fetch(`https://auto-shoroom.herokuapp.com/cars/${id}`, {
+      fetch(`https://ns-mobile-house.herokuapp.com/mobiles/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

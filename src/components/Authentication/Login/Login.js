@@ -4,7 +4,7 @@ import {
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+// import { toast, ToastContainer } from "react-toastify";
 import auth from "../../../firebase.init";
 import Loading from "../../Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -23,7 +23,21 @@ const Login = () => {
     return <Loading></Loading>;
   }
   if (user) {
-    navigate(from, { replace: true });
+    fetch("https://ns-mobile-house.herokuapp.com/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: user?.user?.email,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("accessToken", data?.token);
+        // toast.success("Welcome To ns Showroom");
+        navigate(from, { replace: true });
+      });
   }
   if (error) {
     errorMessage = <p className="text-danger">{error?.message} </p>;
@@ -42,9 +56,9 @@ const Login = () => {
     const email = event.target.email.value;
     if (email) {
       await sendPasswordResetEmail(email);
-      toast("Sent email");
+      // toast("Sent email");
     } else {
-      toast("please enter your email address");
+      // toast("please enter your email address");
     }
   };
   return (
@@ -111,8 +125,8 @@ const Login = () => {
           </Link>
         </div>
         <SocialLogin></SocialLogin>
+        {/* <ToastContainer /> */}
       </div>
-      <ToastContainer />
     </div>
   );
 };

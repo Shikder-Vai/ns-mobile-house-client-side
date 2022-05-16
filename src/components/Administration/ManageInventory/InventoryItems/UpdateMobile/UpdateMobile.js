@@ -8,7 +8,7 @@ const UpdateMobile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`https://auto-shoroom.herokuapp.com/cars/${id}`)
+    fetch(`https://ns-mobile-house.herokuapp.com/mobiles/${id}`)
       .then((res) => res.json())
       .then((data) => setMobile(data));
   }, [id]);
@@ -32,7 +32,7 @@ const UpdateMobile = () => {
       image,
     };
 
-    fetch(`https://auto-shoroom.herokuapp.com/cars/${id}`, {
+    fetch(`https://ns-mobile-house.herokuapp.com/mobiles/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

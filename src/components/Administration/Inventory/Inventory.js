@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import Helmet from "react-helmet";
 import Loading from "../../Loading/Loading";
 import Mobile from "./Mobile/Mobile";
 
@@ -11,7 +11,7 @@ const Inventory = () => {
 
   useEffect(() => {
     fetch(
-      `https://auto-shoroom.herokuapp.com/mobiles?limit=${limit}&pageNumber=${page}`
+      `https://ns-mobile-house.herokuapp.com/mobiles?limit=${limit}&pageNumber=${page}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -23,7 +23,7 @@ const Inventory = () => {
   return (
     <div className="flex flex-col bg-gray-300 justify-center items-center">
       <Helmet>
-        <title>Inventory - Auto Showroom</title>
+        <title>Inventory - Ns Showroom</title>
       </Helmet>
       <div className="flex bg-login-style w-[100vw] py-10 items-center justify-center">
         <h1 className="font-bold  flex justify-center items-center text-[#FF5400] mx-4 text-3xl">

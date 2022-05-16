@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import Helmet from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../../../Loading/Loading";
@@ -10,7 +10,7 @@ const InventoryItems = () => {
   const [refresh, setRefresh] = useState("");
 
   useEffect(() => {
-    fetch("https://auto-shoroom.herokuapp.com/cars")
+    fetch("https://ns-mobile-house.herokuapp.com/mobiles")
       .then((res) => res.json())
       .then((data) => setMobile(data.mobiles));
   }, [refresh]);
@@ -19,7 +19,7 @@ const InventoryItems = () => {
     const procced = window.confirm("Are you Sure?");
 
     if (procced) {
-      fetch(`https://auto-shoroom.herokuapp.com/cars/${id}`, {
+      fetch(`https://ns-mobile-house.herokuapp.com/mobiles/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
