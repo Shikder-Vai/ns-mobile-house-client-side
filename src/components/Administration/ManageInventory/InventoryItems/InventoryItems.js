@@ -15,7 +15,7 @@ const InventoryItems = () => {
       .then((data) => setMobile(data.mobiles));
   }, [refresh]);
 
-  const handleDeleteCar = (id) => {
+  const handleDeleteMobile = (id) => {
     const procced = window.confirm("Are you Sure?");
 
     if (procced) {
@@ -135,7 +135,7 @@ const InventoryItems = () => {
                           </td>
                           <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                             <button
-                              onClick={() => handleDeleteCar(mobile._id)}
+                              onClick={() => handleDeleteMobile(mobile._id)}
                               className="text-red-600 dark:text-red-500 hover:underline"
                             >
                               <svg
