@@ -2,7 +2,7 @@ import React from "react";
 
 const Blogs = () => {
   return (
-    <div className=" mx-10">
+    <div className=" mx-10 h-screen">
       <h1 className=" font-serif text-xl font-bold text-gray-800">
         1. Difference between javascript and nodejs
       </h1>

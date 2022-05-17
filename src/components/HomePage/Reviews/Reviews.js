@@ -4,7 +4,7 @@ const Reviews = () => {
   return (
     <div className="md:mx-10 my-5">
       <hr />
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+      <p className="mb-3 font-normal text-center text-gray-700 dark:text-gray-400">
         Join over 1,000,000 teams worldwide that are using to get more done.
       </p>
       <div className="md:flex p-2 mb-3 ">

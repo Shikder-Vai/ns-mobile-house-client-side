@@ -16,8 +16,10 @@ const Welcome = () => {
             Noteworthy technology acquisitions 2021
           </h5>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Here are the biggest enterprise technology acquisitions of 2021 so
-            far, in reverse chronological order.
+            A smartphone is a cell phone that allows you to do more than make
+            phone calls and send text messages. Smartphones can browse the
+            Internet and run software programs like a computer. Smartphones use
+            a touch screen to allow users to interact with them.
           </p>
         </div>
       </div>
