@@ -15,7 +15,7 @@ const Footer = () => {
             Ns World
           </a>
         </h6>
-        <h6 className=" text-sm">Copyright © 2022 Foods Reviews</h6>
+        <h6 className=" text-sm">Copyright © 2022 Mobile Inventory</h6>
         <p className="mb-3 footer-font">All rights reserved</p>
       </div>
     </section>

@@ -12,21 +12,21 @@ const Benner = () => {
           <div className="carousel-item active relative float-left w-full">
             <img
               src="https://i.ibb.co/BfQ5dF3/rami-al-zayat-w33-zg-d-NL4-unsplash.jpg"
-              className="block h-96 w-full"
+              className="block h-[400px] w-full"
               alt="Wild Landscape"
             />
           </div>
           <div className="carousel-item relative float-left w-full">
             <img
               src="https://i.ibb.co/5GmMPbK/benjamin-sow-CB4z0u-TFSYg-unsplash.jpg"
-              className="block h-96 w-full"
+              className="block h-[400px] w-full"
               alt="Camera"
             />
           </div>
           <div className="carousel-item relative float-left w-full">
             <img
               src="https://i.ibb.co/bRBntRS/rob-hampson-cq-FKhqv6-Ong-unsplash.jpg"
-              className="block h-96 w-full"
+              className="block h-[400px] w-full"
               alt="Exotic Fruits"
             />
           </div>

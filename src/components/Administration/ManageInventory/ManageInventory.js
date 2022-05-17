@@ -5,7 +5,7 @@ import ActiveLink from "../../HomePage/NavBar/ActiveLink";
 const ManageInventory = () => {
   return (
     <div className="flex">
-      <div className="w-1/3 bg-[#151515] h-[100vw] text-gray-100 px-2">
+      <div className="w-1/3 bg-[#151515] h-auto text-gray-100 px-2">
         <ul className="md:ml-4">
           <li className="pt-6">
             <ActiveLink to="mangeItems">

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import auth from "../../../firebase.init";
 import Loading from "../../Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -12,6 +12,7 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const emailRef = useRef("");
 
   let from = location.state?.from?.pathname || "/home";
   const [signInWithEmailAndPassword, user, loading, error] =
@@ -35,7 +36,7 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("accessToken", data?.token);
-        // toast.success("Welcome To ns Showroom");
+        toast.success("Welcome To ns Showroom");
         navigate(from, { replace: true });
       });
   }
@@ -52,13 +53,13 @@ const Login = () => {
     signInWithEmailAndPassword(email, password);
   };
 
-  const resetPassword = async (event) => {
-    const email = event.target.email.value;
+  const resetPassword = async () => {
+    const email = emailRef.current.value;
     if (email) {
       await sendPasswordResetEmail(email);
-      // toast("Sent email");
+      toast("Sent email");
     } else {
-      // toast("please enter your email address");
+      toast("please enter your email address");
     }
   };
   return (
@@ -77,6 +78,7 @@ const Login = () => {
             </label>{" "}
             <br />
             <input
+              ref={emailRef}
               type="email"
               name="email"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-60 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
@@ -110,16 +112,15 @@ const Login = () => {
           </button>
         </form>
         {errorMessage}
-        <div className=" flex p-5 flex-row justify-between">
-          <p className=" text-sm text-blue-700 hover:underline dark:text-blue-500">
+        <div className=" flex p-5 justify-between">
+          <p className=" text-sm mr-3 text-blue-700 hover:underline dark:text-blue-500">
             <button onClick={resetPassword} type="reset">
               Lost Password?
             </button>
-          </p>
-
+          </p>{" "}
           <Link
             to="/signUp"
-            className=" text-sm text-blue-700 hover:underline dark:text-blue-500"
+            className=" text-sm ml-3 text-blue-700 hover:underline dark:text-blue-500"
           >
             New? Please Register
           </Link>
@@ -127,8 +128,8 @@ const Login = () => {
         <div>
           <SocialLogin></SocialLogin>
         </div>
-        {/* <ToastContainer /> */}
       </div>
+      <ToastContainer />
     </div>
   );
 };

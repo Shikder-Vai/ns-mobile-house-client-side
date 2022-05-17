@@ -12,7 +12,7 @@ const Products = () => {
           <Product key={mobile?._id} product={mobile}></Product>
         ))}
       </div>
-      <div className=" flex justify-center mx-72 rounded-2xl my-3 p-2 bg-slate-600 items-center">
+      <div className=" flex justify-center md:mx-72 rounded-2xl my-3 p-2 bg-slate-600 items-center">
         <Link to="/inventory">See All</Link>
       </div>
     </div>
