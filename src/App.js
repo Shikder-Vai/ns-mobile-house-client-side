@@ -16,6 +16,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./components/HomePage/Home/Home";
 import NavBar from "./components/HomePage/NavBar/NavBar";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <ToastContainer></ToastContainer>
       <Footer></Footer>
     </div>
   );
