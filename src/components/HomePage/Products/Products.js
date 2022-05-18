@@ -6,7 +6,7 @@ import Product from "./Product/Product";
 const Products = () => {
   const [{ mobiles }] = useProducts();
   return (
-    <div>
+    <div className="mx-6 items-center">
       <div className=" grid gap-3 md:grid-cols-3">
         {mobiles?.slice(0, 6).map((mobile) => (
           <Product key={mobile?._id} product={mobile}></Product>

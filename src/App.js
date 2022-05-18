@@ -32,7 +32,14 @@ function App() {
             </RequireAuth>
           }
         ></Route>
-        <Route path="/inventory/:inventoryId" element={<ManageMobile />} />
+        <Route
+          path="/inventory/:inventoryId"
+          element={
+            <RequireAuth>
+              <ManageMobile />
+            </RequireAuth>
+          }
+        />
         <Route
           path="/manageInventory"
           element={
